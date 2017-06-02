@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, AfterViewChecked } from '@angular/core'
 import { TransferState } from '../modules/transfer-state/transfer-state';
 
 @Component({
@@ -15,9 +15,13 @@ import { TransferState } from '../modules/transfer-state/transfer-state';
     }`
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked {
   constructor(private cache: TransferState) {}
   ngOnInit() {
     this.cache.set('cached', true);
+  }
+  
+  ngAfterViewChecked() {
+    console.log('this will keep appearing in the node console!');
   }
 }
